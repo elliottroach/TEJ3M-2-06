@@ -1,20 +1,21 @@
 """
-Made by Elliott Roach
-Made on 2026 feb
-this turns the light on and off
+Created by Aimar Fernandez
+Created on Mar 2026
+This program rotates a servo 180 and back over and over
 """
 
 import board
 import digitalio
 import time
+import adafruit_hcsr04
 
 # setup
-pin5 = digitalio.DigitalInOut(board.GP5)
-pin5.direction = digitalio.Direction.OUTPUT
+sonar = adafruit_hcsr04.HCSR04(trigger_pin = borad.GP9, echo_pin=board.GP10)
 
+# infinte loop
 while True:
-    pin5.value = True
-    time.sleep(1)
-    pin5.value = False
-    time.sleep(1)
-    
+    try:
+        print((sonar.distance,))
+    except RuntimeError:
+        print("Retrying!")
+    time.sleep(0.1)
