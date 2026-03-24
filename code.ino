@@ -1,20 +1,33 @@
 // created by Elliott Roach
 // created on feb 2026
-// this blinks a light on and off from pin 5
+// This is a sonar distance sensors.
 
-int pin5 = 5;
-
+const int pinTrig = 9;
+const int pinEcho = 10;
+float duration;
+float distance;
 
 void setup() {
     // initializing pins
-    pinMode(pin5, OUTPUT);
+    pinMode(pinTrig, OUTPUT);
+    pinMode(pinEcho, INPUT);
+    Serial.begin(9600);  
 }
 
 
 void loop() {
-    // this blinks the light in infinite loop
-    digitalWrite(pin5, HIGH);
-    delay(1000);
-    digitalWrite(pin5, LOW);
-    delay(1000);
+    // this gets the distance forever
+    
+    digitalWrite(pinTrig, LOW);  
+    delayMicroseconds(2);  
+    digitalWrite(pinTrig, HIGH);  
+    delayMicroseconds(10);  
+    digitalWrite(pinTrig, LOW); 
+
+    // calculating and printing
+    duration = pulseIn(pinEcho, HIGH);
+    distance = (duration*.0343)/2;
+    Serial.print("Distance: ");
+    Serial.println(distance);
+    delay(100);
 }
