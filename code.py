@@ -1,7 +1,7 @@
 """
-Created by Aimar Fernandez
+Created by Elliott Roach
 Created on Mar 2026
-This program rotates a servo 180 and back over and over
+This senses the distance
 """
 
 import board
@@ -10,12 +10,12 @@ import time
 import adafruit_hcsr04
 
 # setup
-sonar = adafruit_hcsr04.HCSR04(trigger_pin = borad.GP9, echo_pin=board.GP10)
+sonar = adafruit_hcsr04.HCSR04(trigger_pin = board.GP9, echo_pin=board.GP10)
 
 # infinte loop
 while True:
     try:
-        print((sonar.distance,))
+        print(sonar.distance)
     except RuntimeError:
-        print("Retrying!")
+        print("Error")
     time.sleep(0.1)
